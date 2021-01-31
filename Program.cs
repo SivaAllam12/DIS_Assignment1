@@ -39,7 +39,7 @@ namespace Assignment1_Spring2021
             }
 
             //Question 4:
-            int[] arr = { 1,2,3,4,5 };
+            int[] arr = { 3, 1, 4, 1, 5 };
             Console.WriteLine("Q4: Enter the absolute difference to check");
             int k = Convert.ToInt32(Console.ReadLine());
             int n4 = diffPairs(arr, k);
@@ -69,16 +69,21 @@ namespace Assignment1_Spring2021
             try
             {
                 int i = 0, j = 0, l = 1, k = 0;
+                //start a loop from 1 to n to print lines
                 for (i = 1; i <= n; i++)
                 {
+                    //start a loop from n to i
                     for (j = n; j >= i; j--)
                     {
+                        //print the spaces
                         Console.Write(" ");
                     }
                     for (k = 1; k <= l; k++)
                     {
+                        //print the stars
                         Console.Write('*');
                     }
+                    //change the cursor to next line
                     Console.WriteLine();
                     l = l + 2;
                 }
@@ -93,15 +98,20 @@ namespace Assignment1_Spring2021
         {
             try
             {
+                //initialize pell list with 0 and 1
                 var pellList = new List<int> { 0, 1 };
                 for (int i = 2; i < n2; i++)
                 {
+                    //Calcualte next number in pell series
                     var nextNum = 2 * pellList[i - 1] + pellList[i - 2];
+                    //Add the number to the list
                     pellList.Add(nextNum);
                 }
                 for (int i = 0; i < n2; i++)
                 {
+                    //display the numbers in pell list
                     Console.Write(pellList[i]);
+                    //put comma after each number
                     if (i != n2 - 1)
                         Console.Write(',');
                 }
@@ -117,16 +127,21 @@ namespace Assignment1_Spring2021
             try
             {
                 int i, j;
+                //start a loop starts from zero till the given number
                 for (i = 0; i < n3; i++)
                 {
+                    //start a loop from given number to zero
                     for (j = n3; j > 0; j--)
                     {
+                        //checked squares of both numbers if it equals to given number or not
                         if (i * i + j * j == n3)
                         {
+                            //return true if it matches and come out of loop
                             return true;
                         }
                     }
                 }
+                //return false if the given num cant be expressed as squareSums of squares
                 return false;
             }
             catch(Exception)
@@ -140,18 +155,27 @@ namespace Assignment1_Spring2021
             try
             {
                 // write your code here.
+                //sort the given numbers in ascending orders
                 Array.Sort(nums);
+                //reverse the list to get numbers in descending order
                 Array.Reverse(nums);
+                //initialize a counter
                 int count=0;
+                //initialize a tuple list to store pair of numbers
                 var tupleList = new List<(int, int)>();
+                //start a loop for given numbers
                 for (int i=0;i<nums.Length-1;i++)
                 {
+                    //start another loop for given numbers
                     for(int j=i+1;j<=nums.Length-1;j++)
                     {
+                        //check whether given difference matches the obtained difference
                         if(k==nums[i]-nums[j])
                         {
+                            //check whether list contains the pair if not increase the count
                             if (!tupleList.Contains((nums[i], nums[j])))
                             {
+                                //add the pair to the list
                                 tupleList.Add((nums[i], nums[j]));
                                 count++;
 
@@ -172,20 +196,27 @@ namespace Assignment1_Spring2021
         {
             try
             {
-     
+                //initialize a empty list to store the required emails 
                 var strlist = new List<string>();
              
+                //travesrse through given list of emails
                 foreach (var item in emails)
                 {
+                    //split the email into two parts with @ symbol
                     string[] subs = item.ToLower().Split('@');
+                    //remove the "." character in the email
                     var firststr = subs[0].Replace(".", "");
+                    //split the obtained email into two parts with + symbol
                     var secondstr = firststr.Split('+');
+                    //chek whether email already present or not
                     if (strlist.Contains(secondstr[0].Trim() + '@' + subs[1]))
                     {
                         continue;
                     }
+                    //add the email to the list
                     strlist.Add(secondstr[0].Trim() + '@' + subs[1]);
                 }
+                //take the count of list and return it
                 return strlist.Count;
             }
             catch(Exception)
@@ -197,12 +228,17 @@ namespace Assignment1_Spring2021
         {
             try
             {
+                //assume the 1st row 1st element as destination
                 string dest = paths[0, 1];
-                for (int i = 1; i < 3; i++)
+                //LoaderOptimization through the elements in the array
+                for (int i = 1; i < paths.GetLength(0); i++)
                 {
+                    //checked whether the dest is coming in origin or not
                     if (dest == paths[i, 0])
                     {
+                        //change the destination 
                         dest = paths[i, 1];
+                        //make variable i as 0 to check again from the start of array
                         i = 0;
                     }
 
